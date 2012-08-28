@@ -142,8 +142,10 @@ class TransMeta(models.base.ModelBase):
                         lang_attr.null = True
                     if not lang_attr.blank:
                         lang_attr.blank = True
-                if hasattr(lang_attr, 'verbose_name'):
+                if getattr(lang_attr, 'verbose_name', None):
                     lang_attr.verbose_name = LazyString(lang_attr.verbose_name, _(lang_name))
+                else:
+                    setattr(lang_attr, 'verbose_name', LazyString(field, _(lang_name)))
                 attrs[lang_attr_name] = lang_attr
             del attrs[field]
             attrs[field] = property(default_value(field))
