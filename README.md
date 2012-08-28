@@ -1,0 +1,1 @@
+Fork of [django-transmeta](http://pypi.python.org/pypi/django-transmeta) with some fixes
